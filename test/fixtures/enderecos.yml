@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  endereco: MyString
+  numero: MyString
+  cep: MyString
+  complemento: MyString
+  cidade_id: 
+  latitude: MyString
+  longitude: MyString
+
+two:
+  endereco: MyString
+  numero: MyString
+  cep: MyString
+  complemento: MyString
+  cidade_id: 
+  latitude: MyString
+  longitude: MyString

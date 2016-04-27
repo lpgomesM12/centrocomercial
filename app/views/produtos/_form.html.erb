@@ -1,0 +1,80 @@
+<%= form_for(@produto) do |f| %>
+  <% if @produto.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@produto.errors.count, "error") %> prohibited this produto from being saved:</h2>
+
+      <ul>
+      <% @produto.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+ <div class="row mar-bot40">
+   <div class="col-lg-12" >
+     <%= f.label :nome %><br>
+     <%= f.text_field :nome, :class => 'form-control' %>
+  </div>
+ </div>
+
+ <div class="row mar-bot40">
+   <div class="col-lg-12" >
+    <%= f.label :tituloanuncio %><br>
+    <%= f.text_field :tituloanuncio, :class => 'form-control' %>
+  </div>
+ </div>
+ 
+ <div class="row mar-bot40">  
+  <div class="col-lg-3" >
+    <%= f.label :precovarejo %><br>
+    <%= f.text_field :precovarejo, :class => 'form-control' %>
+  </div>
+   <div class="col-lg-3" >
+    <%= f.label :precoatacado %><br>
+    <%= f.text_field :precoatacado, :class => 'form-control' %>
+  </div>
+  <div class="col-lg-3" >
+    <%= f.label :qtd_atacado %><br>
+    <%= f.number_field :qtd_atacado, :class => 'form-control' %>
+  </div>
+  
+   <div class="col-lg-2" >
+    <%= f.label :categoriaproduto_id %><br>
+    <%= f.text_field :categoriaproduto_id, :class => 'form-control' %>
+   </div>
+  </div>
+  
+  <div class="row mar-bot40">
+   <div class="col-lg-12">
+    <%= f.label :descricao %><br>
+    <%= f.text_area :descricao, :class => 'form-control' %>
+   </div>
+  </div>
+
+
+<hr>
+
+<div class="row">  
+  <div class="col-lg-12">
+    <h4>Adicione as fotos do produto</h4>
+  <div id="fotoproduto">
+    <%= f.fields_for :fotoproduto do |item| %>
+      <%= render 'fotoproduto_fields', :f => item %>
+     <% end %>
+      <div class='links'>
+      <br>
+        <%= link_to_add_association 'Adicionar nova foto', f, :fotoproduto, :class => "btn btn-default" %>
+      </div>
+   </div>
+
+  </div>
+ </div>
+
+
+
+<br>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

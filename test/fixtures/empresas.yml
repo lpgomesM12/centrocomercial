@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nome: MyString
+  cnpj: MyString
+  centroscomercial_id: 
+  informacao: MyString
+  fraseempresa: MyString
+  endereco_id: 
+
+two:
+  nome: MyString
+  cnpj: MyString
+  centroscomercial_id: 
+  informacao: MyString
+  fraseempresa: MyString
+  endereco_id: 

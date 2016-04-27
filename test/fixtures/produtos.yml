@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nome: MyString
+  tituloanuncio: MyString
+  precoatacado: 9.99
+  precovarejo: 9.99
+  descricao: MyText
+  qtd_atacado: 1
+  categoriaproduto_id: 
+
+two:
+  nome: MyString
+  tituloanuncio: MyString
+  precoatacado: 9.99
+  precovarejo: 9.99
+  descricao: MyText
+  qtd_atacado: 1
+  categoriaproduto_id: 

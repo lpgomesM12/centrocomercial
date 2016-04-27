@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Centroscomercials</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Cidade</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @centroscomercials.each do |centroscomercial| %>
+      <tr>
+        <td><%= centroscomercial.nome %></td>
+        <td><%= centroscomercial.cidade %></td>
+        <td><%= link_to 'Show', centroscomercial %></td>
+        <td><%= link_to 'Edit', edit_centroscomercial_path(centroscomercial) %></td>
+        <td><%= link_to 'Destroy', centroscomercial, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Centroscomercial', new_centroscomercial_path %>
