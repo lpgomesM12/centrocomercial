@@ -3,10 +3,9 @@ class CategoriaprodutosController < ApplicationController
 
   def busca_categoria
 
-    if params[:father_id]  
+    if params[:father_id] && params[:father_id] != ""  
        @categoriaprodutos = Categoriaproduto.where(father_id: params[:father_id])
-   else
-    
+   else    
        @categoriaprodutos = Categoriaproduto.where(father_id: nil)    
   end
 
