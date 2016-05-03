@@ -1,6 +1,6 @@
 class ProdutosController < ApplicationController
   before_action :set_produto, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
 
  # Pesquisa por produto
 
@@ -84,6 +84,6 @@ class ProdutosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def produto_params
-      params.require(:produto).permit(:nome, :tituloanuncio, :precoatacado, :precovarejo, :descricao, :qtd_atacado, :categoriaproduto_id, fotoproduto_attributes: [:id, :_destroy, :imagem])
+      params.require(:produto).permit(:nome, :tituloanuncio, :precoatacado, :precovarejo, :descricao, :qtd_atacado, :categoriaproduto_id, :empresa_id, :user_id, fotoproduto_attributes: [:id, :_destroy, :imagem])
     end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160421231156) do
+ActiveRecord::Schema.define(version: 20160503092350) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -104,10 +104,12 @@ ActiveRecord::Schema.define(version: 20160421231156) do
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
     t.integer  "empresa_id"
+    t.integer  "user_id"
   end
 
   add_index "produtos", ["categoriaproduto_id"], name: "index_produtos_on_categoriaproduto_id", using: :btree
   add_index "produtos", ["empresa_id"], name: "index_produtos_on_empresa_id", using: :btree
+  add_index "produtos", ["user_id"], name: "index_produtos_on_user_id", using: :btree
 
   create_table "telefones", force: :cascade do |t|
     t.string   "numero"
@@ -133,9 +135,11 @@ ActiveRecord::Schema.define(version: 20160421231156) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.integer  "empresa_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["empresa_id"], name: "index_users_on_empresa_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "centroscomercials", "cidades"
@@ -146,5 +150,7 @@ ActiveRecord::Schema.define(version: 20160421231156) do
   add_foreign_key "fotoprodutos", "produtos"
   add_foreign_key "produtos", "categoriaprodutos"
   add_foreign_key "produtos", "empresas"
+  add_foreign_key "produtos", "users"
   add_foreign_key "telefones", "empresas"
+  add_foreign_key "users", "empresas"
 end

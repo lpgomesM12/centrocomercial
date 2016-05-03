@@ -1,6 +1,20 @@
 class CategoriaprodutosController < ApplicationController
   before_action :set_categoriaproduto, only: [:show, :edit, :update, :destroy]
 
+
+
+  def busca_categoria
+
+    if params[:father_id]  
+       @categoriaprodutos = Categoriaproduto.where(father_id: params[:father_id])
+   else
+    
+       @categoriaprodutos = Categoriaproduto.where(father_id: nil)    
+  end
+
+  render :json => @categoriaprodutos 
+  
+  end 
   # GET /categoriaprodutos
   # GET /categoriaprodutos.json
   def index
@@ -69,6 +83,6 @@ class CategoriaprodutosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def categoriaproduto_params
-      params.require(:categoriaproduto).permit(:nome, :descricao)
+      params.require(:categoriaproduto).permit(:nome, :father_id, :descricao)
     end
 end

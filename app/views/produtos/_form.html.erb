@@ -10,7 +10,25 @@
       </ul>
     </div>
   <% end %>
+ 
+ <br>
 
+ <div class="row mar-bot40">
+ 
+   <div class="col-lg-6" >
+    <div class="list-group" id="listaCategoria">
+     </div>
+  </div>
+
+  <div class="col-lg-6" >
+    <label for="usr">Categoria Selecionada</label>
+    <input type="text" class="form-control" disabled id="categoriaproduto">
+  </div>
+
+</div>
+
+ <hr>
+ 
  <div class="row mar-bot40">
    <div class="col-lg-12" >
      <%= f.label :nome %><br>
@@ -20,29 +38,25 @@
 
  <div class="row mar-bot40">
    <div class="col-lg-12" >
-    <%= f.label :tituloanuncio %><br>
+    <%= f.label :titulo_anuncio %><br>
     <%= f.text_field :tituloanuncio, :class => 'form-control' %>
   </div>
  </div>
  
  <div class="row mar-bot40">  
   <div class="col-lg-3" >
-    <%= f.label :precovarejo %><br>
+    <%= f.label :preco_varejo %><br>
     <%= f.text_field :precovarejo, :class => 'form-control' %>
   </div>
    <div class="col-lg-3" >
-    <%= f.label :precoatacado %><br>
+    <%= f.label :preco_atacado %><br>
     <%= f.text_field :precoatacado, :class => 'form-control' %>
   </div>
   <div class="col-lg-3" >
-    <%= f.label :qtd_atacado %><br>
+    <%= f.label :Quatidade_atacado %><br>
     <%= f.number_field :qtd_atacado, :class => 'form-control' %>
   </div>
   
-   <div class="col-lg-2" >
-    <%= f.label :categoriaproduto_id %><br>
-    <%= f.text_field :categoriaproduto_id, :class => 'form-control' %>
-   </div>
   </div>
   
   <div class="row mar-bot40">
@@ -51,7 +65,6 @@
     <%= f.text_area :descricao, :class => 'form-control' %>
    </div>
   </div>
-
 
 <hr>
 
@@ -72,9 +85,50 @@
  </div>
 
 
+<%= f.hidden_field :empresa_id, :value => current_user.empresa_id %>
+<%= f.hidden_field :user_id, :value => current_user.id %>
+<%= f.hidden_field :categoriaproduto_id%>
+
 
 <br>
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+
+
+<script type="text/javascript">
+  
+   function carrega_categoria(id,nome){
+
+
+    $("#categoriaproduto").val(nome);
+    $("#produto_categoriaproduto_id").val(id);
+
+     $.ajax({
+          url: '<%= buscacategoria_path %>',
+          data : {
+            father_id : id
+          },
+          success: function(data){
+             $("#listaCategoria").empty();
+
+             $( "#listaCategoria" ).append( "<button type='button' onclick='carrega_categoria()' class='list-group-item active'>Categorias</button>");
+
+            for (var i in data) {
+              var item = data[i];
+                $( "#listaCategoria" ).append('<button type="button" onclick="carrega_categoria('+item.id+', \'' + item.nome + '\')" class="list-group-item">'+item.nome+'</button>');
+             };
+          }
+        })
+    }
+
+carrega_categoria();
+
+
+    $(function() {
+     $("#produto_precovarejo").maskMoney({showSymbol:true, symbol:"R$", decimal:",", thousands:"."});
+     $("#produto_precoatacado").maskMoney({showSymbol:true, symbol:"R$", decimal:",", thousands:"."});
+  })
+
+</script>
