@@ -1,8 +1,6 @@
 class CategoriaprodutosController < ApplicationController
   before_action :set_categoriaproduto, only: [:show, :edit, :update, :destroy]
 
-
-
   def busca_categoria
 
     if params[:father_id]  

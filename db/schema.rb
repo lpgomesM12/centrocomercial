@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160503092350) do
+ActiveRecord::Schema.define(version: 20160503102843) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,9 +21,12 @@ ActiveRecord::Schema.define(version: 20160503092350) do
     t.string   "descricao"
     t.integer  "father_id"
     t.integer  "integer"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.integer  "centroscomercial_id"
   end
+
+  add_index "categoriaprodutos", ["centroscomercial_id"], name: "index_categoriaprodutos_on_centroscomercial_id", using: :btree
 
   create_table "centroscomercials", force: :cascade do |t|
     t.string   "nome"
@@ -142,6 +145,7 @@ ActiveRecord::Schema.define(version: 20160503092350) do
   add_index "users", ["empresa_id"], name: "index_users_on_empresa_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "categoriaprodutos", "centroscomercials"
   add_foreign_key "centroscomercials", "cidades"
   add_foreign_key "cidades", "estados"
   add_foreign_key "empresas", "centroscomercials"
