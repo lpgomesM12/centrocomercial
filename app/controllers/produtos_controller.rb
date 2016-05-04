@@ -1,6 +1,7 @@
 class ProdutosController < ApplicationController
-  before_action :set_produto, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
+  
+ before_action :authenticate_user!, :except => [:buscaprodutos,:BuscaCategorias] 
+ before_action :set_produto, only: [:show, :edit, :update, :destroy]
 
  # Pesquisa por produto
 
