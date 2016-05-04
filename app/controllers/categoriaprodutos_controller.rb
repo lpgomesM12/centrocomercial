@@ -2,7 +2,6 @@ class CategoriaprodutosController < ApplicationController
   before_action :set_categoriaproduto, only: [:show, :edit, :update, :destroy]
 
   def busca_categoria
-
     if params[:father_id] && params[:father_id] != ""  
        @categoriaprodutos = Categoriaproduto.where(father_id: params[:father_id])
    else    

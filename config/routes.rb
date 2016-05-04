@@ -16,5 +16,6 @@ Rails.application.routes.draw do
   match '/listarCidade', to: 'cidades#get_cities', via: 'get'
   match '/buscaprodutos', to: 'produtos#buscaprodutos', via: 'get'
   match '/buscacategoria', to: 'categoriaprodutos#busca_categoria', via: 'get'
+  match '/buscacategoriafilhas', to: 'produtos#BuscaCategorias', via: 'get'
 
 end

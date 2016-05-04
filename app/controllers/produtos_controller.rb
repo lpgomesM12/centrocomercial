@@ -5,15 +5,37 @@ class ProdutosController < ApplicationController
  # Pesquisa por produto
 
  def buscaprodutos
-    @produtos = Produto.where(categoriaproduto_id: params[:categoria])
+    
+    @produtos = Produto.where(categoriaproduto_id: @allperson)
+    
+
+    @allperson = [params[:categoria]]
+    @categorias = BuscaCategorias(params[:categoria])
+
+   
+
+    @produtos = Produto.where(categoriaproduto_id: @allperson)
 
     json_produtos = @produtos.map { |item| {:id => item.id,
                                                              :nome => item.nome,
                                                              :titulo => item.tituloanuncio,
                                                              :fotos =>  item.fotoproduto.first.imagem.url(:thumb)}}
    render :json => json_produtos
+ end
 
- end  
+
+def BuscaCategorias(id)
+   categoriaprodutos = Categoriaproduto.where(father_id: id)
+
+    if categoriaprodutos
+      categoriaprodutos.each do |categoria|     
+        @allperson += [categoria.id]
+        BuscaCategorias(categoria)
+      end
+    end
+
+end
+  
 
   # GET /produtos
   # GET /produtos.json
