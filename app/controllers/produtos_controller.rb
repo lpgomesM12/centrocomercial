@@ -1,19 +1,16 @@
 class ProdutosController < ApplicationController
   
- before_action :authenticate_user!, :except => [:buscaprodutos,:BuscaCategorias] 
+ before_action :authenticate_user!, :except => [:buscaprodutos,:BuscaCategorias, :BuscaProduto] 
  before_action :set_produto, only: [:show, :edit, :update, :destroy]
 
  # Pesquisa por produto
 
+
  def buscaprodutos
     
     @produtos = Produto.where(categoriaproduto_id: @allperson)
-    
-
     @allperson = [params[:categoria]]
     @categorias = BuscaCategorias(params[:categoria])
-
-   
 
     @produtos = Produto.where(categoriaproduto_id: @allperson)
 
@@ -36,6 +33,29 @@ def BuscaCategorias(id)
     end
 
 end
+
+def BuscaProduto
+
+   @produto = Produto.find(params[:produto_id]) 
+   
+
+   @fotosproduto = Fotoproduto.where(produto_id: params[:produto_id])
+
+
+   fotoproduto = @fotosproduto.map {|item| item.imagem.url(:medium)}
+
+
+   json_produto =    {:id => @produto.id,
+                      :nome => @produto.nome,
+                      :nomeempresa => @produto.empresa.nome,
+                      :descricao => @produto.descricao,
+                      :titulo => @produto.tituloanuncio,
+                      :fotos =>  fotoproduto}
+
+   render :json => json_produto
+
+end
+
   
 
   # GET /produtos

@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get 'static_pages/index'
   match '/listarCidade', to: 'cidades#get_cities', via: 'get'
   match '/buscaprodutos', to: 'produtos#buscaprodutos', via: 'get'
+  match '/buscaproduto', to: 'produtos#BuscaProduto', via: 'get'
   match '/buscacategoria', to: 'categoriaprodutos#busca_categoria', via: 'get'
   match '/buscacategoriafilhas', to: 'produtos#BuscaCategorias', via: 'get'
 
