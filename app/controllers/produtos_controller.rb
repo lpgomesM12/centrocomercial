@@ -43,6 +43,8 @@ def BuscaProduto
    json_produto =    {:id => @produto.id,
                       :nome => @produto.nome,
                       :nomeempresa => @produto.empresa.nome,
+                      :precoatacado => @produto.precoatacado,
+                      :precovarejo => @produto.precovarejo,
                       :descricao => @produto.descricao,
                       :titulo => @produto.tituloanuncio,
                       :fotos =>  fotoproduto}
