@@ -41,6 +41,8 @@ def BuscaProduto
    fotoproduto = @fotosproduto.map {|item| item.imagem.url(:medium)}
 
    json_produto =    {:id => @produto.id,
+                      :nome => @produto.nome,
+                      :nomeempresa => @produto.empresa.nome,
                       :descricao => @produto.descricao,
                       :titulo => @produto.tituloanuncio,
                       :fotos =>  fotoproduto}
