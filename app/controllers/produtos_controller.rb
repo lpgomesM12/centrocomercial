@@ -5,6 +5,7 @@ class ProdutosController < ApplicationController
 
  # Pesquisa por produto
 
+include ActionView::Helpers::NumberHelper
 
  def buscaprodutos
     
@@ -43,8 +44,8 @@ def BuscaProduto
    json_produto =    {:id => @produto.id,
                       :nome => @produto.nome,
                       :nomeempresa => @produto.empresa.nome,
-                      :precoatacado => @produto.precoatacado,
-                      :precovarejo => @produto.precovarejo,
+                      :precoatacado => number_to_currency(@produto.precoatacado, unit: "R$", separator: ",", delimiter: ""),
+                      :precovarejo => number_to_currency(@produto.precovarejo, unit: "R$", separator: ",", delimiter: ""),
                       :descricao => @produto.descricao,
                       :titulo => @produto.tituloanuncio,
                       :fotos =>  fotoproduto}
