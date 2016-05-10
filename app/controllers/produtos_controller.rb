@@ -13,7 +13,7 @@ include ActionView::Helpers::NumberHelper
     @allperson = [params[:categoria]]
     @categorias = BuscaCategorias(params[:categoria])
 
-    @produtos = Produto.where(categoriaproduto_id: @allperson).page(params[:page]).per(2)
+    @produtos = Produto.where(categoriaproduto_id: @allperson).page(params[:page]).per(6)
 
     json_produtos = @produtos.map { |item| {:id => item.id,
                                                              :nome => item.nome,
