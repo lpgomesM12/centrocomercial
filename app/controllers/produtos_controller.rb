@@ -1,6 +1,6 @@
 class ProdutosController < ApplicationController
   
- before_action :authenticate_user!, :except => [:buscaprodutos,:BuscaCategorias, :BuscaProduto] 
+ before_action :authenticate_user!, :except => [:buscaprodutos,:BuscaCategorias, :BuscaProduto, :busca_todos_produtos_empresa] 
  before_action :set_produto, only: [:show, :edit, :update, :destroy]
 
  # Pesquisa por produto
@@ -44,6 +44,7 @@ def BuscaProduto
    json_produto =    {:id => @produto.id,
                       :nome => @produto.nome,
                       :nomeempresa => @produto.empresa.nome,
+                      :empresa_id => @produto.empresa.id,
                       :precoatacado => number_to_currency(@produto.precoatacado, unit: "R$", separator: ",", delimiter: ""),
                       :precovarejo => number_to_currency(@produto.precovarejo, unit: "R$", separator: ",", delimiter: ""),
                       :descricao => @produto.descricao,
@@ -51,6 +52,24 @@ def BuscaProduto
                       :fotos =>  fotoproduto}
 
    render :json => json_produto
+
+end
+
+
+def busca_todos_produtos_empresa
+  
+  @produtos = Produto.where(empresa_id: params[:empresa_id])
+  
+  json_produtos = @produtos.map { |item| {:id => item.id,
+                                          :nome => item.nome,
+                                          :nomeempresa => item.empresa.nome,
+                                          :empresa_id => item.empresa.id,
+                                          :precoatacado => number_to_currency(item.precoatacado, unit: "R$", separator: ",", delimiter: ""),
+                                          :precovarejo => number_to_currency(item.precovarejo, unit: "R$", separator: ",", delimiter: ""),
+                                          :descricao => item.descricao,
+                                          :titulo => item.tituloanuncio,
+                                          :fotos =>  item.fotoproduto.map { |e| e.imagem.url(:medium)}}}
+  render :json => json_produtos
 
 end
 
