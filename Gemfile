@@ -17,6 +17,8 @@ gem 'sass-rails', '~> 5.0'
 gem 'devise'
 gem "paperclip", "~> 4.3"
 gem "cocoon"
+gem 'kaminari'
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

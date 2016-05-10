@@ -9,11 +9,11 @@ include ActionView::Helpers::NumberHelper
 
  def buscaprodutos
     
-    @produtos = Produto.where(categoriaproduto_id: @allperson)
+   # @produtos = Produto.where(categoriaproduto_id: @allperson).page(1).per(6)
     @allperson = [params[:categoria]]
     @categorias = BuscaCategorias(params[:categoria])
 
-    @produtos = Produto.where(categoriaproduto_id: @allperson)
+    @produtos = Produto.where(categoriaproduto_id: @allperson).page(params[:page]).per(2)
 
     json_produtos = @produtos.map { |item| {:id => item.id,
                                                              :nome => item.nome,
