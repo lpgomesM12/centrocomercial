@@ -14,11 +14,14 @@ include ActionView::Helpers::NumberHelper
     @categorias = BuscaCategorias(params[:categoria])
 
     @produtos = Produto.where(categoriaproduto_id: @allperson).page(params[:page]).per(6)
+    qtd_produto = Produto.where(categoriaproduto_id: @allperson).count
+
 
     json_produtos = @produtos.map { |item| {:id => item.id,
-                                                             :nome => item.nome,
-                                                             :titulo => item.tituloanuncio,
-                                                             :fotos =>  item.fotoproduto.first.imagem.url(:thumb)}}
+                                                   :nome => item.nome,
+                                                   :titulo => item.tituloanuncio,
+                                                   :fotos =>  item.fotoproduto.first.imagem.url(:thumb),
+                                                   :qtd_produtos => qtd_produto}}
    render :json => json_produtos
  end
 
