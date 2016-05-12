@@ -8,9 +8,39 @@ class CategoriaprodutosController < ApplicationController
        @categoriaprodutos = Categoriaproduto.where(father_id: nil)    
   end
 
-  render :json => @categoriaprodutos 
-  
-  end 
+
+   @categoriaprodutos.each do |categoria|
+     
+      @categorias = Categoriaproduto.where(father_id: categoria.id)
+        
+       if @categorias.empty?
+          categoria.filhos = false
+          else
+          categoria.filhos = true
+       end 
+
+
+   end 
+
+   json_categoriaprodutos = @categoriaprodutos.map { |item| {:id => item.id,
+                                                   :nome => item.nome,
+                                                   :centroscomercial_id =>  item.centroscomercial_id,
+                                                   :filhos => tem_filhos(item.id)}}
+
+  render :json => json_categoriaprodutos 
+
+  end
+
+
+  def tem_filhos(id)
+          @categorias = Categoriaproduto.where(father_id: id)
+        
+       if @categorias.empty?
+          return false
+        else
+          return true
+       end        
+  end
   # GET /categoriaprodutos
   # GET /categoriaprodutos.json
   def index
