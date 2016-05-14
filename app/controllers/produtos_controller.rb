@@ -21,6 +21,8 @@ include ActionView::Helpers::NumberHelper
                                                    :nome => item.nome,
                                                    :titulo => item.tituloanuncio,
                                                    :fotos =>  item.fotoproduto.first.imagem.url(:thumb),
+                                                   :precoatacado => number_to_currency(item.precoatacado, unit: "R$", separator: ",", delimiter: ""),
+                                                   :precovarejo => number_to_currency(item.precovarejo, unit: "R$", separator: ",", delimiter: ""),
                                                    :qtd_produtos => qtd_produto}}
    render :json => json_produtos
  end
