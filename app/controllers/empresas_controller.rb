@@ -21,6 +21,8 @@ class EmpresasController < ApplicationController
 
   # GET /empresas/1/edit
   def edit
+
+      #@estado = @empresa.endereco.cidade.estado.id
   end
 
   # POST /empresas

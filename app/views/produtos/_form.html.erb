@@ -12,7 +12,6 @@
   <% end %>
  
  <br>
-
  <div class="row mar-bot40">
  
    <div class="col-lg-6" >
@@ -20,9 +19,11 @@
      </div>
   </div>
 
+  <% @categoria = @produto.id ?  @produto.categoriaproduto.nome : "" %>
+
   <div class="col-lg-6" >
     <label for="usr">Categoria Selecionada</label>
-    <input type="text" class="form-control" disabled id="categoriaproduto">
+    <input type="text" class="form-control" value="<%=@cateoria%>" disabled id="categoriaproduto">
   </div>
 
 </div>
@@ -85,15 +86,33 @@
  </div>
 
 
-<%= f.hidden_field :empresa_id, :value => current_user.empresa_id %>
-<%= f.hidden_field :user_id, :value => current_user.id %>
-<%= f.hidden_field :categoriaproduto_id%>
+ <%= f.hidden_field :empresa_id, :value => current_user.empresa_id %>
+ <%= f.hidden_field :user_id, :value => current_user.id %>
+ <%= f.hidden_field :categoriaproduto_id%>
 
 
 <br>
-  <div class="actions">
-    <%= f.submit %>
+
   </div>
+</div>
+
+
+<div class="row mar-bot40">
+    <div class="col-lg-8" > 
+  <div class="btn-group">
+      <button type="submit" value="Submit" class="btn btn-primary btn-sm">
+      <span class="glyphicon glyphicon-floppy-disk"></span> Salvar
+      </button>
+      <%= link_to produtos_path, :class => "btn btn-default btn-sm" do %>
+          <span class="glyphicon glyphicon-arrow-left"></span> Voltar
+        <% end %>
+  </div>
+   </div>
+</div>
+
+<br>
+<br>
+
 <% end %>
 
 
@@ -101,10 +120,12 @@
   
    function carrega_categoria(id,nome){
 
+    if(id){
 
-    $("#categoriaproduto").val(nome);
-    $("#produto_categoriaproduto_id").val(id);
-
+      $("#categoriaproduto").val(nome);
+      $("#produto_categoriaproduto_id").val(id);
+    }
+    
      $.ajax({
           url: '<%= buscacategoria_path %>',
           data : {
@@ -123,8 +144,7 @@
         })
     }
 
-carrega_categoria();
-
+  carrega_categoria();
 
     $(function() {
      $("#produto_precovarejo").maskMoney({showSymbol:true, symbol:"R$", decimal:",", thousands:"."});

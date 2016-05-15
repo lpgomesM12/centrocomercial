@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
-
+<div class="panel panel-default">
+  <div class="panel-heading">Empresa</div>
+  <div class="panel-body">
 <p>
   <strong>Nome:</strong>
   <%= @empresa.nome %>
@@ -12,7 +14,7 @@
 
 <p>
   <strong>Centroscomercial:</strong>
-  <%= @empresa.centroscomercial %>
+  <%= @empresa.centroscomercial.nome %>
 </p>
 
 <p>
@@ -27,8 +29,22 @@
 
 <p>
   <strong>Endereco:</strong>
-  <%= @empresa.endereco %>
+  <%= @empresa.endereco.endereco %>
 </p>
 
-<%= link_to 'Edit', edit_empresa_path(@empresa) %> |
-<%= link_to 'Back', empresas_path %>
+</div>
+</div>
+
+<div class="row mar-bot40">
+  <div class="col-lg-8" > 
+  <div class="btn-group">
+      <%= link_to edit_empresa_path(@empresa), :class => "btn btn-default btn-sm" do %>
+          <span class="glyphicon glyphicon-pencil"></span> Editar
+        <% end %>
+      <%= link_to empresas_path, :class => "btn btn-default btn-sm" do %>
+          <span class="glyphicon glyphicon-arrow-left"></span> Voltar
+        <% end %>
+  </div>
+   </div>
+</div>
+

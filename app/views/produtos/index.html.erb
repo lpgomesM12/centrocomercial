@@ -1,5 +1,9 @@
 <p id="notice"><%= notice %></p>
 
+
+<div class="panel panel-default">
+  <div class="panel-body">
+
 <h3>Lista Produtos</h3>
 
 <div class="table-responsive">
@@ -26,24 +30,33 @@
 
           <td align='right'> 
               <%= link_to produto, class: "btn btn-default btn-sm" do %>
-                <span class="glyphicon glyphicon-list-alt"></span> Exibir
+                <span style="color:green" class="glyphicon glyphicon-list-alt"></span> Exibir
             <% end %>             
             <%= link_to edit_produto_path(produto), class: "btn btn-default btn-sm" do %>
-              <span class="glyphicon glyphicon-pencil"></span> Editar
+              <span style="color:blue" class="glyphicon glyphicon-pencil"></span> Editar
             <% end %>
             <%= link_to produto, method: :delete, data: { confirm: 'Deseja excluir o registro?' }, class: "btn btn-default btn-sm" do %>
-                        <span class="glyphicon glyphicon-trash"></span> Excluir
+                    <span  style="color:red"  class="glyphicon glyphicon-trash"></span> Excluir
             <% end %>                  
           </td> 
 
       </tr>
     <% end %>
+  
+    <% if @produtos.empty?%>
+    <tr>
+       <td colspan="5"><h4 style="font-style: italic">Nenhum produto cadastrado.</h4></td>
+     </tr>
+    <%end%>
+  
   </tbody>
 </table>
 </div>
 
 <br>
 
+  </div>
+</div>
  <%= link_to new_produto_path, class: "btn btn-default btn-sm" do %>
-      <span class="glyphicon glyphicon-file"></span>Novo
+      <span style="color:green" class="glyphicon glyphicon-plus"></span> Novo
   <% end %>

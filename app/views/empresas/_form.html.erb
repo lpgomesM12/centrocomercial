@@ -19,16 +19,15 @@
 </div>
 
  <div class="row mar-bot40">
-      <div class="col-lg-12" >
+    <div class="col-lg-6" >
     <%= f.label :cnpj %><br>
     <%= f.text_field :cnpj, :class => 'form-control' %>
   </div>
-  </div> 
- <div class="row mar-bot40">
-    <div class="col-lg-12" >
-    <%= f.label :centro_comercial_id %><br>
-    <%= f.text_field :centroscomercial_id, :class => 'form-control' %>
-   </div>
+
+    <div class="col-lg-6">
+               <%= f.label :centro_comercial %><br>
+               <%= f.select :centroscomercial_id, options_from_collection_for_select(Centroscomercial.all, 'id', 'nome',@empresa.centroscomercial_id), {:include_blank => true}, {:class => 'form-control' }%>
+    </div>
   </div>
 
   <div class="row mar-bot40">
@@ -75,10 +74,10 @@
        
        <br>
        <div class="row mar-bot40">
-         <%=  fields_for :estado do |estado| %>
+         <%=  fields_for :estado do |estad| %>
              <div class="col-lg-6">
-               <%= estado.label :Estado %><br>
-               <%= estado.select :estado_id, options_from_collection_for_select(Estado.all, 'id', 'nome_estado',@estado), {:include_blank => true}, {:onchange => 'changeState(this)', :class => 'form-control' }%>
+               <%= estad.lab\ el :Estado %><br>
+               <%= estad.select :estado_id, options_from_collection_for_select(Estado.all, 'id', 'nome_estado',@estado), {:include_blank => true}, {:onchange => 'changeState(this)', :class => 'form-control' }%>
              </div>
          <%end%>
          <%if @vk_cidade %>
@@ -105,9 +104,26 @@
           </div>
          <%end%>
 
-  <div class="actions">
-    <%= f.submit %>
   </div>
+</div>
+
+
+<div class="row mar-bot40">
+    <div class="col-lg-8" > 
+  <div class="btn-group">
+      <button type="submit" value="Submit" class="btn btn-primary btn-sm">
+      <span class="glyphicon glyphicon-floppy-disk"></span> Salvar
+      </button>
+      <%= link_to empresas_path, :class => "btn btn-default btn-sm" do %>
+          <span class="glyphicon glyphicon-arrow-left"></span> Voltar
+        <% end %>
+  </div>
+   </div>
+</div>
+
+<br>
+<br>
+
 <% end %>
 
 

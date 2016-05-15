@@ -20,7 +20,7 @@ include ActionView::Helpers::NumberHelper
     json_produtos = @produtos.map { |item| {:id => item.id,
                                                    :nome => item.nome,
                                                    :titulo => item.tituloanuncio,
-                                                   :fotos =>  item.fotoproduto.first.imagem.url(:thumb),
+                                                   :fotos =>  item.fotoproduto.first.imagem.url(:original),
                                                    :precoatacado => number_to_currency(item.precoatacado, unit: "R$", separator: ",", delimiter: ""),
                                                    :precovarejo => number_to_currency(item.precovarejo, unit: "R$", separator: ",", delimiter: ""),
                                                    :qtd_produtos => qtd_produto}}
@@ -73,7 +73,7 @@ def busca_todos_produtos_empresa
                                           :precovarejo => number_to_currency(item.precovarejo, unit: "R$", separator: ",", delimiter: ""),
                                           :descricao => item.descricao,
                                           :titulo => item.tituloanuncio,
-                                          :fotos =>  item.fotoproduto.map { |e| e.imagem.url(:medium)}}}
+                                          :fotos =>  item.fotoproduto.map { |e| e.imagem.url(:original)}}}
   render :json => json_produtos
 
 end
@@ -83,7 +83,7 @@ end
   # GET /produtos
   # GET /produtos.json
   def index
-    @produtos = Produto.all
+    @produtos = Produto.where(empresa_id: current_user.empresa_id)
   end
 
   # GET /produtos/1
