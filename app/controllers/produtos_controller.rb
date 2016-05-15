@@ -44,7 +44,7 @@ def BuscaProduto
 
    @produto = Produto.find(params[:produto_id]) 
    @fotosproduto = Fotoproduto.where(produto_id: params[:produto_id])
-   fotoproduto = @fotosproduto.map {|item| item.imagem.url(:medium)}
+   fotoproduto = @fotosproduto.map {|item| item.imagem.url(:original)}
 
    json_produto =    {:id => @produto.id,
                       :nome => @produto.nome,
