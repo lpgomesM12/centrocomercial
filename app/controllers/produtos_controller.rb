@@ -45,10 +45,13 @@ def BuscaProduto
    @produto = Produto.find(params[:produto_id]) 
    @fotosproduto = Fotoproduto.where(produto_id: params[:produto_id])
    fotoproduto = @fotosproduto.map {|item| item.imagem.url(:medium)}
+   #@telefones = Telefone.where()
 
    json_produto =    {:id => @produto.id,
                       :nome => @produto.nome,
                       :nomeempresa => @produto.empresa.nome,
+                      :telefones => @produto.empresa.telefones.map{ |e| e.numero},
+                      :endereco => @produto.empresa.endereco.endereco + @produto.empresa.endereco.numero,
                       :empresa_id => @produto.empresa.id,
                       :precoatacado => number_to_currency(@produto.precoatacado, unit: "R$", separator: ",", delimiter: ""),
                       :precovarejo => number_to_currency(@produto.precovarejo, unit: "R$", separator: ",", delimiter: ""),
