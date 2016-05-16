@@ -12,6 +12,7 @@ class EmpresasController < ApplicationController
   def show
   end
 
+
   # GET /empresas/new
   def new
     @empresa = Empresa.new
@@ -22,8 +23,15 @@ class EmpresasController < ApplicationController
   # GET /empresas/1/edit
   def edit
 
-      #@estado = @empresa.endereco.cidade.estado.id
+    @estado = @empresa.endereco.cidade.estado.id
+
+    @cidade = Cidade.where(estado_id: @estado)
+    @cidade_setada = @empresa.endereco.cidade.id
+  
   end
+
+
+
 
   # POST /empresas
   # POST /empresas.json

@@ -81,4 +81,6 @@ Rails.application.configure do
 
   config.assets.paths << Rails.root.join("app","assets","fonts","audio")
   
+  I18n.config.enforce_available_locales = true
+  config.i18n.default_locale = :'pt-BR'
 end

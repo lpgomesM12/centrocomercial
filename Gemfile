@@ -19,6 +19,7 @@ gem "paperclip", "~> 4.3"
 gem "cocoon"
 gem 'kaminari'
 
+gem 'rails-i18n', '~> 4.0.0'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

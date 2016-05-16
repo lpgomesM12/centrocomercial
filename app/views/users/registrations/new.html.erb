@@ -1,34 +1,61 @@
-<h2>Cadastraro</h2>
+
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
-  <div class="field">
+<div class="row">
+ <div class="col-lg-3" >
+ </div>
+
+<div class="col-lg-6" >
+<div class="panel panel-default" style="background-color:#ececec">
+  <div class="panel-body">
+
+ <h2>Cadastro</h2>
+ 
+   <div class="row">
+    <div class="col-lg-12">
+               <%= f.label :Empresa %><br>
+               <%= f.select :empresa_id, options_from_collection_for_select(Empresa.all, 'id', 'nome'), {:include_blank => true}, {:class => 'form-control' }%>
+    </div>
+  </div>
+
+  <div class="row">
+   <div class="col-lg-12" >
     <%= f.label :nome %><br />
-    <%= f.text_field :nome, autofocus: true %>
+    <%= f.text_field :nome, autofocus: true, :class => 'form-control' %>
+   </div>
   </div>
 
-  <div class="field">
+  <div class="row">
+   <div class="col-lg-12" >
     <%= f.label :email %><br />
-    <%= f.email_field :email%>
+    <%= f.email_field :email, :class => 'form-control'%>
+   </div>
   </div>
 
-  <div class="field">
-    <%= f.label :password %>
+  <div class="row">
+   <div class="col-lg-12" >
+    <%= f.label :senha %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
+    <%= f.password_field :password, autocomplete: "off", :class => 'form-control' %>
+     </div>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
+  <div class="row">
+   <div class="col-lg-12" >
+    <%= f.label :confirmar_senha %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off", :class => 'form-control' %>
+   </div>
+ </div>
+<br>
+<button type="submit" class="btn btn-primary btn-block">Cadastrar</button>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
+ </div>
+</div>
+
 <% end %>
 
-<%= render "users/shared/links" %>
+<%#= render "users/shared/links" %>

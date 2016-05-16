@@ -62,9 +62,7 @@ end
 
 
 def busca_todos_produtos_empresa
-  
   @produtos = Produto.where(empresa_id: params[:empresa_id])
-  
   json_produtos = @produtos.map { |item| {:id => item.id,
                                           :nome => item.nome,
                                           :nomeempresa => item.empresa.nome,
@@ -76,14 +74,14 @@ def busca_todos_produtos_empresa
                                           :fotos =>  item.fotoproduto.map { |e| e.imagem.url(:medium)}}}
   render :json => json_produtos
 
-end
+ end
 
   
 
   # GET /produtos
   # GET /produtos.json
   def index
-    @produtos = Produto.where(empresa_id: current_user.empresa_id)
+    @produtos = Produto.where(empresa_id: current_user.empresa_id).page(params[:page]).per(7)
   end
 
   # GET /produtos/1

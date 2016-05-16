@@ -71,16 +71,15 @@
            </div>
          </div>
 
-       
        <br>
        <div class="row mar-bot40">
-         <%=  fields_for :estado do |estad| %>
+         <%=  fields_for :estados do |esta| %>
              <div class="col-lg-6">
-               <%= estad.lab\ el :Estado %><br>
-               <%= estad.select :estado_id, options_from_collection_for_select(Estado.all, 'id', 'nome_estado',@estado), {:include_blank => true}, {:onchange => 'changeState(this)', :class => 'form-control' }%>
+               <%= esta.label :Estado %><br>
+               <%= esta.select :estado_id, options_from_collection_for_select(Estado.all, 'id', 'nome_estado',@estado), {:include_blank => true}, {:onchange => 'changeState(this)', :class => 'form-control' }%>
              </div>
          <%end%>
-         <%if @vk_cidade %>
+         <%if @cidade %>
                <div class="col-lg-6">
                  <%= enderecos.label :Cidade %>
                  <%= enderecos.select :cidade_id, options_from_collection_for_select(@cidade, 'id', 'nome_cidade',@cidade_setada),{}, :class => 'form-control'%>
