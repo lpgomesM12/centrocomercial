@@ -51,7 +51,7 @@ def BuscaProduto
                       :nome => @produto.nome,
                       :nomeempresa => @produto.empresa.nome,
                       :telefones => @produto.empresa.telefones.map{ |e| e.numero},
-                      :endereco => @produto.empresa.endereco.endereco + @produto.empresa.endereco.numero,
+                      :endereco => @produto.empresa.endereco.endereco + " N°"+ (@produto.empresa.endereco.numero? ? @produto.empresa.endereco.numero : "s/n") + " " +@produto.empresa.endereco.cidade.nome_cidade+"-"+@produto.empresa.endereco.cidade.estado.sigl_estado,
                       :empresa_id => @produto.empresa.id,
                       :precoatacado => number_to_currency(@produto.precoatacado, unit: "R$", separator: ",", delimiter: ""),
                       :precovarejo => number_to_currency(@produto.precovarejo, unit: "R$", separator: ",", delimiter: ""),
