@@ -19,5 +19,6 @@ Rails.application.routes.draw do
   match '/buscaprodutosempresa', to: 'produtos#busca_todos_produtos_empresa', via: 'get'
   match '/buscacategoria', to: 'categoriaprodutos#busca_categoria', via: 'get'
   match '/buscacategoriafilhas', to: 'produtos#BuscaCategorias', via: 'get'
+  match '/logar', to: 'userapp#login', via: 'get'
 
 end
