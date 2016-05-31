@@ -36,6 +36,8 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    angular_csrf (0.1.4)
+      rails (>= 3.1)
     arel (6.0.3)
     autoprefixer-rails (6.3.3.1)
       execjs
@@ -124,6 +126,7 @@ GEM
       mimemagic (= 0.3.0)
     pg (0.18.4)
     rack (1.6.4)
+    rack-cors (0.4.0)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.2.5)
@@ -200,6 +203,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  angular_csrf
   bootstrap-sass (~> 3.3.6)
   byebug
   capistrano (~> 3.4)
@@ -214,6 +218,7 @@ DEPENDENCIES
   kaminari
   paperclip (~> 4.3)
   pg (~> 0.15)
+  rack-cors
   rails (= 4.2.5)
   rails-i18n (~> 4.0.0)
   sass-rails (~> 5.0)

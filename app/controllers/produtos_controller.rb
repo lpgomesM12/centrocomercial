@@ -40,6 +40,11 @@ def BuscaCategorias(id)
 
 end
 
+def cadastrar_produto
+
+
+end
+
 def BuscaProduto
 
    @produto = Produto.find(params[:produto_id]) 
@@ -106,6 +111,8 @@ def busca_todos_produtos_empresa
   # POST /produtos.json
   def create
     @produto = Produto.new(produto_params)
+
+    debugger
 
     respond_to do |format|
       if @produto.save
