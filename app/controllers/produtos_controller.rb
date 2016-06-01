@@ -112,8 +112,6 @@ def busca_todos_produtos_empresa
   def create
     @produto = Produto.new(produto_params)
 
-    debugger
-
     respond_to do |format|
       if @produto.save
         format.html { redirect_to @produto, notice: 'Produto was successfully created.' }

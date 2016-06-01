@@ -21,9 +21,8 @@
     <% @empresas.each do |empresa| %>
       <tr>
         <td><%= empresa.nome %></td>
-        <td><%= empresa.centroscomercial.nome %></td>
+        <td><%= empresa.centroscomercial.nome rescue nil%></td>
         <td><%= empresa.cnpj %></td>
-
 
         <td align='right'> 
               <%= link_to empresa, class: "btn btn-default btn-sm" do %>
