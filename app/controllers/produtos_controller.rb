@@ -1,6 +1,6 @@
 class ProdutosController < ApplicationController
   
- before_action :authenticate_user!, :except => [:buscaprodutos,:BuscaCategorias, :BuscaProduto, :busca_todos_produtos_empresa] 
+ before_action :authenticate_user!, :except => [:buscaprodutos,:BuscaCategorias, :BuscaProduto, :busca_todos_produtos_empresa, :cadastrar_produto] 
  before_action :set_produto, only: [:show, :edit, :update, :destroy]
 
  # Pesquisa por produto
@@ -122,6 +122,35 @@ def busca_todos_produtos_empresa
       end
     end
   end
+
+def cadastrar_produto
+  
+  @produto = Produto.new
+  @produto.nome = params[:nome]
+  @produto.tituloanuncio = params[:tituloanuncio]
+  @produto.precoatacado = params[:precoatacado]
+  @produto.precovarejo = params[:precovarejo]
+  @produto.descricao = params[:descricao]
+  @produto.qtd_atacado = params[:qtd_atacado]
+  @produto.categoriaproduto_id = params[:categoriaproduto_id]
+  @produto.empresa_id = params[:empresa_id]
+  @produto.user_id = params[:user_id]
+
+  if @produto.save  
+    json_produtos =   {:id => @produto.id,
+                      :nome => @produto.nome,
+                      :nomeempresa => @produto.empresa.nome,
+                      :empresa_id => @produto.empresa.id,
+                      :precoatacado => number_to_currency(@produto.precoatacado, unit: "R$", separator: ",", delimiter: ""),
+                      :precovarejo => number_to_currency(@produto.precovarejo, unit: "R$", separator: ",", delimiter: ""),
+                      :descricao => @produto.descricao,
+                      :titulo => @produto.tituloanuncio}
+     render :json => json_produtos
+  else
+  render :json => false
+ end
+
+end
 
   # PATCH/PUT /produtos/1
   # PATCH/PUT /produtos/1.json
