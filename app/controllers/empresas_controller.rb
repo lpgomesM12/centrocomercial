@@ -12,6 +12,15 @@ class EmpresasController < ApplicationController
   def show
   end
 
+  def busca_empresas
+    @empresas = Empresa.where("nomepagina LIKE ?", "%#{params[:nomepagina]}%")
+
+    json_empresas = @empresas.map { |item| {:id => item.id,
+                                                   :nome =>  item.nome,
+                                                   :nomepagina => item.nomepagina}}
+    render :json => json_empresas
+
+  end 
 
   # GET /empresas/new
   def new
@@ -29,9 +38,6 @@ class EmpresasController < ApplicationController
     @cidade_setada = @empresa.endereco.cidade.id
   
   end
-
-
-
 
   # POST /empresas
   # POST /empresas.json
@@ -81,6 +87,6 @@ class EmpresasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def empresa_params
-      params.require(:empresa).permit(:nome, :cnpj, :centroscomercial_id, :informacao, :fraseempresa, endereco_attributes: [ :id, :endereco, :numero, :complemento, :cep, :latitude, :longitude, :cidade_id], telefones_attributes: [ :id, :tipo, :numero, :_destroy ])
+      params.require(:empresa).permit(:nome, :cnpj, :centroscomercial_id, :informacao, :fraseempresa, :nomepagina, endereco_attributes: [ :id, :endereco, :numero, :complemento, :cep, :latitude, :longitude, :cidade_id], telefones_attributes: [ :id, :tipo, :numero, :_destroy ])
     end
 end

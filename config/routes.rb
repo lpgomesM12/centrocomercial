@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   match '/buscacategoriafilhas', to: 'produtos#BuscaCategorias', via: 'get'
   match '/deletaFotoProduto', to: 'fotoprodutos#deleta', via: 'get'
   match '/cadastrarProduto', to: 'produtos#cadastrar_produto', via: 'get'
+  match '/buscaempresas', to: 'empresas#busca_empresas', via: 'get'
   #match '/salvarfoto', to: 'fotoprodutos#create', via: 'get'
   match '/logar', to: 'userapp#login', via: 'get'
   match '/buscaFotoProduto', to: 'fotoprodutos#busca_fotos_produto', via: 'get'

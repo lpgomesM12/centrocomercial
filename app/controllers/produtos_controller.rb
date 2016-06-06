@@ -40,13 +40,11 @@ def BuscaCategorias(id)
 
 end
 
-def cadastrar_produto
-
+def busca_produtos
 
 end
 
 def BuscaProduto
-
    @produto = Produto.find(params[:produto_id]) 
    @fotosproduto = Fotoproduto.where(produto_id: params[:produto_id])
    fotoproduto = @fotosproduto.map {|item| item.imagem.url(:medium)}
@@ -65,7 +63,6 @@ def BuscaProduto
                       :fotos =>  fotoproduto}
 
    render :json => json_produto
-
 end
 
 
