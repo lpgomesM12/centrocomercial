@@ -5,4 +5,10 @@ class Empresa < ActiveRecord::Base
   accepts_nested_attributes_for :endereco, allow_destroy: true
   accepts_nested_attributes_for :telefones, allow_destroy: true
 
+
+  def self.busca_empresas(nomepagina)
+  	pagina = nomepagina.downcase
+    where.("lower(nomepagina)LIKE ?", "%#{pagina}%")
+  end
+
 end

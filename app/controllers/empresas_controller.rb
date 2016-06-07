@@ -13,8 +13,8 @@ class EmpresasController < ApplicationController
   end
 
   def busca_empresas
-    @empresas = Empresa.where("nomepagina LIKE ?", "%#{params[:nomepagina]}%")
-
+    nome = params[:nomepagina].downcase
+    @empresas = Empresa.where("lower(nomepagina)LIKE ?", "%#{nome}%")
     json_empresas = @empresas.map { |item| {:id => item.id,
                                                    :nome =>  item.nome,
                                                    :nomepagina => item.nomepagina}}
