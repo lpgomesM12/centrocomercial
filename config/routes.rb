@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'site/index'
+
   resources :produtos
   resources :categoriaprodutos
   resources :telefones
@@ -11,7 +13,7 @@ Rails.application.routes.draw do
   devise_for :users
   
 
-  root 'static_pages#index'
+  root 'site#index'
 
   get 'static_pages/index'
   match '/listarCidade', to: 'cidades#get_cities', via: 'get'
