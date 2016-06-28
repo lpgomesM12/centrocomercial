@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   #match '/salvarfoto', to: 'fotoprodutos#create', via: 'get'
   match '/logar', to: 'userapp#login', via: 'get'
   match '/buscaFotoProduto', to: 'fotoprodutos#busca_fotos_produto', via: 'get'
+  match '/showproduto', to: 'site#showproduto', via: 'get'
 
 
 end

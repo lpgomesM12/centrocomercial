@@ -10,8 +10,13 @@
       <img src="<%=foto.imagem.url(:thumb)%>" alt="...">
     <%end%>
       <div class="caption">
-        <h3 style="color:#4d7592"><%=produto.nome%></h3>
+        <h3 style="color:#4d7592">
+            <%=produto.nome%>           
+        	<%#= link_to produto.nome, showproduto_path%>
+        </h3>
         <p><%=produto.tituloanuncio%></p>
+        Atacado: <label style="font-size:19px"><strong style="color:#F70"><%=number_to_currency(produto.precoatacado, unit: "R$", separator: ",", delimiter: "")%></strong></label><br>
+        Varejo: <label style="font-size:19px"><strong style="color:#F70"><%=number_to_currency(produto.precovarejo, unit: "R$", separator: ",", delimiter: "")%></label></strong>
       </div>
     </div>
   </div>
@@ -28,6 +33,6 @@
 
   .thumbnail:hover {
       border-style:solid;
-      border-color:#4d7592;
+      border-color:#9db8cc;
   }
 </style>
