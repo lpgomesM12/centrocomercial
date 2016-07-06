@@ -2,31 +2,38 @@
 
 <br>
  <% @produtos.each do |produto| %>
-
-<% 20.times do %>
   <div class="col-sm-5 col-md-3">
     <div class="thumbnail">
     <%for foto in produto.fotoproduto %>
       <img src="<%=foto.imagem.url(:thumb)%>" alt="...">
+      <%break%>
     <%end%>
       <div class="caption">
-        <h3 style="color:#4d7592">
-            <%=produto.nome%>           
-        	<%#= link_to produto.nome, showproduto_path%>
+        <h3 style="color:#4d7592">         
+          <a href="/showproduto/<%=produto.id%>"><%=produto.nome%></a>
         </h3>
+
         <p><%=produto.tituloanuncio%></p>
         Atacado: <label style="font-size:19px"><strong style="color:#F70"><%=number_to_currency(produto.precoatacado, unit: "R$", separator: ",", delimiter: "")%></strong></label><br>
         Varejo: <label style="font-size:19px"><strong style="color:#F70"><%=number_to_currency(produto.precovarejo, unit: "R$", separator: ",", delimiter: "")%></label></strong>
       </div>
     </div>
   </div>
-  <%end%>
 <%end%>
 
 </div>
 
 <style media="screen">
 
+a:hover, a:focus {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+  background:transparent; 
+  
+  }
   .thumbnail {
     border-width:2px;
   }

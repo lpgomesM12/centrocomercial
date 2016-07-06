@@ -20,7 +20,7 @@
 
     <ul class="nav navbar-nav">
         <% @categoriaProduto = Categoriaproduto.all%>
-                 <li class="dropdown"><a href="#" id="dLabel" class="dropdown-toggle" data-toggle="dropdown">Produtos <span class="caret"></span></a>
+                 <li class="dropdown"><a href="#" id="dLabel" class="dropdown-toggle" data-toggle="dropdown">Categorias <span class="caret"></span></a>
                         <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
                          <% @categoriaProduto.each do |categoria| %>
                        <%if categoria.father_id == nil%>
@@ -41,7 +41,11 @@
 
     <ul class="nav navbar-nav navbar-right">
       <% if user_signed_in? %>
+        <li><%= link_to "Administrativo", static_pages_index_path%></li>
         <li><%= link_to "Sair", destroy_user_session_path, method: :delete%></li>
+
+        <%else%>
+        <li><%= link_to "Entrar", user_session_path%></li>
       <%end%>
       <li class="dropdown">
         <% if user_signed_in? %>

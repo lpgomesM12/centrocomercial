@@ -6,8 +6,9 @@ class SiteController < ApplicationController
    @produtos = Produto.all
   end
   
-  def showproduto
-  	
+  def showproduto 	
+  	@fotoprodutos = Fotoproduto.where(produto_id: params[:id])  	
+  	@produto = Produto.find(params[:id])
   end
   
 end
