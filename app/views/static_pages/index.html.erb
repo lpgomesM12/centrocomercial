@@ -5,21 +5,18 @@
 </div>
 </div>
 
-
+<%= form_tag("/static_pages/index", method: "get") do %>
 <div class="row mar-bot40">
- <div class="col-lg-7" >
-	<%= form_for(@empresa) do |f| %>
-		               <%= f.label :Modar_de_empresa %><br>
-	               <%= f.select :id, options_from_collection_for_select(Empresa.all, 'id', 'nome'), {:include_blank => true}, {:class => 'form-control' }%>
-   </div>
+  <div class="col-lg-6" >
+		           <label>Modar de Empresa</label><br>
+		           <%= select_tag 'id', options_from_collection_for_select(Empresa.all, 'id', 'nome'),  {:class => 'form-control' }%>
+    </div>
     <div class="col-lg-2" > 
                <br>
-		      <button type="submit" value="Submit" class="btn btn-primary">
+		      <button type="submit" value="submit" class="btn btn-primary">
 		      <span class="glyphicon glyphicon-floppy-disk"></span> Mudar empresa
-		      </button>
+		     </button>
    </div>
   </div>
 
- <% end %>
-
-
+<%end%>
